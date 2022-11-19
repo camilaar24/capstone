@@ -1,1 +1,46 @@
-<p>flashcard-edit works!</p>
+<div class="panel panel-default">
+    <div class="panel-body">
+      <form id="document-edit" (submit)="$event.preventDefault()" action="">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="question">Question</label>
+            <input
+              type="text"
+              id="question"
+              class="form-control"
+              size="120"
+              max="120"
+              #question
+            />
+          </div>
+          <div class="col-sm-12 form-group">
+            <label for="Answer">Answer</label>
+            <input
+              type="text"
+              id="Answer"
+              class="form-control"
+              max="255"
+              size="120"
+              #answer
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button
+              class="btn btn-success"
+              type="submit"
+              (click)="onSendAnswer(); $event.stopPropagation()">
+              Send
+            </button>
+            <button 
+            class="btn btn-danger" 
+            type="button" 
+            (click)="onClear()">
+              Clear
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
