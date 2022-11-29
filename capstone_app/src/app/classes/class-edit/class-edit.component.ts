@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Class } from '../class.model';
 import { ClassService } from '../class.service';
-import { Subscription } from 'rxjs'
+
 
 @Component({
   selector: 'app-class-edit',
@@ -12,11 +12,10 @@ import { Subscription } from 'rxjs'
 })
 export class ClassEditComponent implements OnInit {
   
-  originalClass!: Class;
-  class!: Class;
+  originalClass: Class;
+  class: Class;
   editMode: boolean = false;
-  subscription!: Subscription;
-  id!: string;
+
 
   constructor(
     private classService: ClassService,
@@ -26,7 +25,7 @@ export class ClassEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      const id = params['id'];
+      let id = params['id'];
       if (id === undefined || id === null) {
         this.editMode = false;
         return;
@@ -44,18 +43,20 @@ export class ClassEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const value = form.value;
-    const newClass = new Class (
+    let value = form.value;
+    let newClass = new Class (
+      null,
       value.name,
       value.description,
-      value.children
+      value.url
     );
     if (this.editMode) {
       this.classService.updateClass(this.originalClass, newClass);
     } else {
       this.classService.addClass(newClass);
     }
-    }
+    this.onCancel();
+  }
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });

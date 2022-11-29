@@ -9,7 +9,7 @@ import { Class } from '../class.model';
 export class ClassItemComponent implements OnInit {
 
   @Input()
-  class!: Class;
+  class: Class;
 
   constructor() { }
 

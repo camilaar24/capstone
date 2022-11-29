@@ -9,9 +9,9 @@ import { FlashcardService } from '../flashcard.service';
 })
 export class FlashcardEditComponent implements OnInit {
   @ViewChild('question')
-  question!: ElementRef;
+  question: ElementRef;
   @ViewChild('answer')
-  answer!: ElementRef;
+  answer: ElementRef;
 
   constructor(private flaschardService: FlashcardService) {}
 
