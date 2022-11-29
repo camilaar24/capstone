@@ -17,6 +17,7 @@ import { DropdownDirective } from './header/dropdown.directive';
 import { ClassDetailComponent } from './classes/class-detail/class-detail.component';
 import { ClassEditComponent } from './classes/class-edit/class-edit.component';
 import { FlashcardItemComponent } from './flashcards/flashcard-item/flashcard-item.component';
+import { DndModule } from 'ng2-dnd';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FlashcardItemComponent } from './flashcards/flashcard-item/flashcard-it
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    DndModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

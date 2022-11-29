@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Class } from './class.model';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
@@ -7,20 +7,64 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root',
 })
 export class ClassService {
-  maxClassId: any;
-  addClass(newClass: Class) {
-    throw new Error('Method not implemented.');
-  }
   selectedClassEvent = new EventEmitter<Class>();
   classListChangedEvent = new Subject<Class[]>();
 
   private classes: Class[] = [];
-  deleteClass: any;
-  
-  constructor(private http: HttpClient) {}
+  private maxClassId!: number;
+  class: any;
 
-  getClass(): Class[] {
+
+  constructor(private http: HttpClient){ 
+    this.getClasses();
+  }
+
+  getClasses(): Class[] {
+    this.http
+    .get<Class[]>(this.class)
+    .subscribe((clases: Class[]) => {
+      this.classes = clases;
+      this.maxClassId = this.getMaxId();
+      this.classes.sort((a, b) => {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+      });
+      this.classListChangedEvent.next(this.classes.slice());
+    });
     return this.classes.slice();
+  }
+
+
+  getClass(id: string) {
+    for (this.class of this.classes.slice()) {
+      if (this.class.id === id) {
+        return this.class;
+      };
+    };
+  }
+
+  storeClasses() {
+    this.http
+    .put(this.class, JSON.stringify(this.class), {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+    .subscribe(() => {
+      this.classes.sort((a, b) => {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+      });
+      this.classListChangedEvent.next(this.classes.slice());
+    });
+  }
+
+  addClass(newClass: Class) {
+    if (newClass == null || newClass === undefined) return;
+    this.maxClassId++;
+    newClass.id = `${this.maxClassId}`;
+    this.classes.push(newClass);
+    this.storeClasses();
   }
 
   getMaxId(): number {
@@ -29,14 +73,6 @@ export class ClassService {
       if (+d.id > maxId) maxId = +d.id;
     });
     return maxId;
-  }
-
-  addDocument(newClass: Class) {
-    if (newClass === null || newClass === undefined) return;
-    this.maxClassId++;
-    newClass.id = `${this.maxClassId}`;
-    this.classes.push(newClass);
-    this.classListChangedEvent.next(this.classes.slice()); 
   }
 
   updateClass(original: Class, newClass: Class) {
@@ -53,7 +89,11 @@ export class ClassService {
 
     newClass.id = original.id;
     this.classes[pos] = newClass;
+    this.storeClasses();
   }
 
-  }
+  deleteClass: any;
+
+}
+
 

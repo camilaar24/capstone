@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         
-      <form id="class-edit" #f="ngForm" >
+      <form id="class-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="row">
           <div class="col-sm-12 form-group">
             <label for="name">Class Title:</label>
@@ -38,7 +38,7 @@
         <div
           class="alert alert-danger"
           *ngIf="(!name.valid && name.touched)">
-          class Title is a required field.
+          Class Title is a required field.
         </div>
   
         <div class="row">

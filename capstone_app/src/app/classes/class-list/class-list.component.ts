@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './class-list.component.html',
   styleUrls: ['./class-list.component.css']
 })
-export class ClassListComponent {
+export class ClassListComponent implements OnInit, OnDestroy {
   @Output() selectedClassEvent = new EventEmitter();
   subscription!: Subscription;
 
@@ -17,15 +17,16 @@ export class ClassListComponent {
   constructor(private classService: ClassService) {}
 
   ngOnInit(): void {
-    this.classes = this.classService.getClass();
+    this.classService.selectedClassEvent.subscribe(
     this.subscription = this.classService.classListChangedEvent.subscribe(
       (classes: Class[]) => {
         this.classes = classes;
       }
-    );
-  }
+    )
+    )
+    }
+
     ngOnDestroy(): void {
       this.subscription.unsubscribe();
   }
-
 }

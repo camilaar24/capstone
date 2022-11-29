@@ -10,14 +10,11 @@ import { ClassService } from './class.service';
 export class ClassesComponent implements OnInit{
   selectedClass!: Class;
 
-  constructor(private classService: ClassService) {}
+  constructor(private classService: ClassService) { }
 
   ngOnInit(): void {
-    this.classService.selectedClassEvent.subscribe(
-      
-  
-    );
+    this.classService.selectedClassEvent.subscribe()
     
-  }
 
+}
 }
