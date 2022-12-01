@@ -8,7 +8,6 @@ import { FlashcardsComponent } from './flashcards/flashcards.component';
 import { FlashcardListComponent } from './flashcards/flashcard-list/flashcard-list.component';
 import { FlashcardEditComponent } from './flashcards/flashcard-edit/flashcard-edit.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +18,10 @@ import { ClassEditComponent } from './classes/class-edit/class-edit.component';
 import { FlashcardItemComponent } from './flashcards/flashcard-item/flashcard-item.component';
 import { DndModule } from 'ng2-dnd';
 import { AuthModule } from '@auth0/auth0-angular';
+import { UserComponent } from './user/user.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 
 @NgModule({
@@ -30,12 +33,16 @@ import { AuthModule } from '@auth0/auth0-angular';
     FlashcardListComponent,
     FlashcardEditComponent,
     HeaderComponent,
-    AuthComponent,
     ClassItemComponent,
     DropdownDirective,
     ClassDetailComponent,
     ClassEditComponent,
     FlashcardItemComponent,
+    UserComponent,
+    SignInComponent,
+    SignUpComponent,
+    ProfileComponent,
+    
   ],
   imports: [
     BrowserModule,
