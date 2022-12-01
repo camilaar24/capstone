@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class FlashcardService {
   flashcardChangedEvent = new EventEmitter<Flashcard[]>();
   private flashcards: Flashcard[] = [];
-  private maxFlashcardId!: number;
+  private maxFlashcardId: number;
 
   constructor(private http: HttpClient) {}
 

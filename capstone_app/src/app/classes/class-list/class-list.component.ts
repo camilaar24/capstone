@@ -18,7 +18,7 @@ export class ClassListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.classes = this.classService.getClasses();
-    this.subscription = this.classService.classListChangedEvent.subscribe(
+    this.subscription = this.classService.classChangedEvent.subscribe(
       (classes: Class[]) => {
         this.classes = classes;
       }

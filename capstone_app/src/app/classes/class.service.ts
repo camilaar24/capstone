@@ -13,6 +13,7 @@ export class ClassService {
   private classes: Class[] = [];
   private maxClassId!: number;
   class: any;
+  classChangedEvent: any;
 
 
   constructor(private http: HttpClient){ 

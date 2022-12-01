@@ -24,12 +24,13 @@ export class ClassDetailComponent implements OnInit{
     this.nativeWindow = this.winRef.getNativeWindow();
 
     this.route.params.subscribe((params: Params) => {
-      this.class = this.classService.getClass(params['id']);
+      let id: string = (+params['id']).toString();
+      this.class = this.classService.getClass(id);
     });
   }
 
   onDelete() {
     this.classService.deleteClass(this.class);
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.router.navigateByUrl('/class');
   }
 }
