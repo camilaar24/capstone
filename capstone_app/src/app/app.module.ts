@@ -18,6 +18,8 @@ import { ClassDetailComponent } from './classes/class-detail/class-detail.compon
 import { ClassEditComponent } from './classes/class-edit/class-edit.component';
 import { FlashcardItemComponent } from './flashcards/flashcard-item/flashcard-item.component';
 import { DndModule } from 'ng2-dnd';
+import { AuthModule } from '@auth0/auth0-angular';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { DndModule } from 'ng2-dnd';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
