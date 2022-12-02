@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
       res => {
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
-        this.resetForm(form);
+        
       },
       err => {
         if (err.status === 422) {
@@ -35,15 +35,7 @@ export class SignUpComponent implements OnInit {
     );
   }
 
-  resetForm(form: NgForm) {
-    this.userService.selectedUser = {
-      fullName: '',
-      email: '',
-      password: ''
-    };
-    form.resetForm();
-    this.serverErrorMessages = '';
-  }
+  
 
 }
 

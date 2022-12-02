@@ -21,7 +21,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
-import { ProfileComponent } from './user/profile/profile.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -41,7 +41,7 @@ import { ProfileComponent } from './user/profile/profile.component';
     UserComponent,
     SignInComponent,
     SignUpComponent,
-    ProfileComponent,
+    HomeComponent,
     
   ],
   imports: [

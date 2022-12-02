@@ -9,9 +9,10 @@ import { User } from './user.model';
 })
 export class UserService {
   selectedUser: User = {
-    fullName: '',
-    email: '',
-    password: ''
+      fullName: '',
+      email: '',
+      password: '',
+      id: 0
   };
 
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
@@ -64,4 +65,12 @@ export class UserService {
     else
       return false;
   }
+
+  delete(id: number) {
+    return this.http.delete(`/users/${id}`);
+}
+
+getAll() {
+    return this.http.get<User[]>(`/users`);
+} 
 }

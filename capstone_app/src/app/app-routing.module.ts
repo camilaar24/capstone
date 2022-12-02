@@ -8,7 +8,8 @@ import { FlashcardsComponent } from './flashcards/flashcards.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
-import { ProfileComponent } from './user/profile/profile.component';
+
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   
@@ -18,7 +19,7 @@ const appRoutes: Routes = [
         { path: ':id/edit', component: ClassEditComponent}
     ]},
 
-    { path: 'flashcards', component: FlashcardListComponent },
+    { path: 'home', component: HomeComponent },
 
     {
         path: 'signup', component: UserComponent,
@@ -28,9 +29,7 @@ const appRoutes: Routes = [
         path: 'login', component: UserComponent,
         children: [{ path: '', component: SignInComponent }]
     },
-    {
-        path: 'userprofile', component: ProfileComponent
-    },
+
     {
         path: '', redirectTo: '/login', pathMatch: 'full'
     }
