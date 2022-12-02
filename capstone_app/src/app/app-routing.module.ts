@@ -5,6 +5,10 @@ import { ClassDetailComponent } from './classes/class-detail/class-detail.compon
 import { ClassesComponent } from './classes/classes.component';
 import { FlashcardListComponent } from './flashcards/flashcard-list/flashcard-list.component';
 import { FlashcardsComponent } from './flashcards/flashcards.component';
+import { UserComponent } from './user/user.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 const appRoutes: Routes = [
   
@@ -15,6 +19,21 @@ const appRoutes: Routes = [
     ]},
 
     { path: 'flashcards', component: FlashcardListComponent },
+
+    {
+        path: 'signup', component: UserComponent,
+        children: [{ path: '', component: SignUpComponent }]
+    },
+    {
+        path: 'login', component: UserComponent,
+        children: [{ path: '', component: SignInComponent }]
+    },
+    {
+        path: 'userprofile', component: ProfileComponent
+    },
+    {
+        path: '', redirectTo: '/login', pathMatch: 'full'
+    }
 ]
 
 @NgModule({
