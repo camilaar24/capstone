@@ -1,0 +1,23 @@
+.btn-danger{
+    background-color: #7209B7;
+    border-color: #7209B7;
+}
+
+.btn-danger:hover{
+    background-color: #F72585;
+    border-color: #F72585;
+  }
+
+.btn-success{
+    background-color: #4361EE;
+  border-color: #4361EE;
+}
+
+.btn-success:hover{
+    background-color: #4CC9F0 ;
+    border-color:  #4CC9F0 ;
+}
+
+.btn {
+    margin: 5px;
+}

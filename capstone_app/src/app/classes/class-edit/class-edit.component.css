@@ -1,4 +1,26 @@
 input.ng-invalid {
-    border: 1px solid red;
+    border: 2px solid #F72585;
   }
+
+  .btn-success{
+
+    background-color: #7209B7;
+    border-color: #7209B7;
+  }
+
+  .btn-success:hover{
+    background-color: #4361EE ;
+    border-color: #4361EE;
+  }
+
+  .btn-primary{
+    background-color: #3A0CA3 ;
+    border-color: #3A0CA3;
+  }
+
+  .btn-primary:hover{
+    background-color: #F72585;
+    border-color: #F72585;
+  }
+
   
