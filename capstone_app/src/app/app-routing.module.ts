@@ -19,15 +19,13 @@ const appRoutes: Routes = [
         { path: ':id/edit', component: ClassEditComponent}
     ]},
 
-    { path: 'home', component: HomeComponent },
+    { path: 'flashq', component: HomeComponent },
 
     {
-        path: 'signup', component: UserComponent,
-        children: [{ path: '', component: SignUpComponent }]
+        path: 'signup', component: SignUpComponent
     },
     {
-        path: 'login', component: UserComponent,
-        children: [{ path: '', component: SignInComponent }]
+        path: 'signin', component: SignInComponent
     },
 
     {

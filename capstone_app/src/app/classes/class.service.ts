@@ -16,9 +16,7 @@ export class ClassService {
   classChangedEvent: any;
 
 
-  constructor(private http: HttpClient){ 
-    this.getClasses();
-  }
+  constructor(private http: HttpClient){ }
 
   getClasses(): Class[] {
     this.http

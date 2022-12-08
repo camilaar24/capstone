@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 import { UserService } from '../user.service';
 
@@ -11,7 +11,7 @@ import { UserService } from '../user.service';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private userService: UserService,private router : Router) { }
+  constructor(public userService: UserService, public router : Router) { }
 
   model ={
     email :'',
@@ -21,17 +21,17 @@ export class SignInComponent implements OnInit {
   serverErrorMessages: string;
   ngOnInit() {
     if(this.userService.isLoggedIn())
-    this.router.navigateByUrl('/userprofile');
+    this.router.navigateByUrl('/classes');
   }
 
   onSubmit(form : NgForm){
     this.userService.login(form.value).subscribe(
       res => {
-       
-        this.router.navigateByUrl('/userprofile');
+        
+        this.router.navigateByUrl('/classes');
       },
       err => {
-        this.serverErrorMessages = err.error.message;
+        this.router.navigateByUrl('/classes');
       }
     );
   }
