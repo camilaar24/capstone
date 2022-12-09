@@ -1,45 +1,39 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Flashcard } from './flashcard.model'; 
+import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlashcardService {
-  flashcardChangedEvent = new EventEmitter<Flashcard[]>();
+  selectedFlashcardEvent= new EventEmitter<Flashcard>();
+  flashcardChangedEvent = new Subject<Flashcard[]>();
+
   private flashcards: Flashcard[] = [];
   private maxFlashcardId: number;
 
-  constructor(private http: HttpClient) {}
+  flashcardListChangedEvent:any;
+
+  constructor(private http: HttpClient) {
+    this.maxFlashcardId = this.getMaxId();
+  }
 
   getFlashcards(): Flashcard[] {
     
     return this.flashcards.slice();
   }
-  storeFlashcard() {
-    this.http
-      .put(JSON.stringify(this.flashcards), {
-        headers: new HttpHeaders().set('Content-Type', 'application/json'),
-      })
-      .subscribe(() => {
-        this.flashcards.sort((a, b) => {
-          if (a < b) return -1;
-          if (a > b) return 1;
-          return 0;
-        });
-        this.flashcardChangedEvent.next(this.flashcards.slice());
-      });
-  }
+
   getMaxId(): number {
     let maxId = 0;
-    this.flashcards.forEach((m) => {
-      if (+m.id > maxId) maxId = +m.id;
+    this.flashcards.forEach((d) => {
+      if (+d.id > maxId) maxId = +d.id;
     });
     return maxId;
   }
 
-  getFlashcard(id: string) {
-    return this.flashcards.find((m) => m.id === id);
+  getFlashcard(id: string):Flashcard {
+    return this.flashcards.find((d) => d.id === id);
     }
 
   addFlashcard(newFlashcard: Flashcard) {
@@ -47,6 +41,8 @@ export class FlashcardService {
     this.maxFlashcardId++;
     newFlashcard.id = `${this.maxFlashcardId}`;
     this.flashcards.push(newFlashcard);
-    this.storeFlashcard();
+    this.flashcardListChangedEvent.next(this.flashcards.slice());
   }
+
+
 }

@@ -8,91 +8,62 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class ClassService {
   selectedClassEvent = new EventEmitter<Class>();
-  classListChangedEvent = new Subject<Class[]>();
+  classChangedEvent= new Subject<Class[]>();
 
   private classes: Class[] = [];
   private maxClassId!: number;
+
   class: any;
-  classChangedEvent: any;
+  classListChangedEvent: any;
 
 
-  constructor(private http: HttpClient){ }
+  constructor(private http: HttpClient){ 
+    this.maxClassId = this.getMaxId();
+  }
 
   getClasses(): Class[] {
-    this.http
-    .get<Class[]>(this.class)
-    .subscribe((clases: Class[]) => {
-      this.classes = clases;
-      this.maxClassId = this.getMaxId();
-      this.classes.sort((a, b) => {
-        if (a < b) return -1;
-        if (a > b) return 1;
-        return 0;
-      });
-      this.classListChangedEvent.next(this.classes.slice());
-    });
+    
     return this.classes.slice();
   }
 
 
-  getClass(id: string) {
-    for (this.class of this.classes.slice()) {
-      if (this.class.id === id) {
-        return this.class;
-      };
-    };
+  getClass(id: string): Class {
+    return this.classes.find((d) => d.id === id);
   }
 
-  storeClasses() {
-    this.http
-    .put(this.class, JSON.stringify(this.class), {
-      headers: new HttpHeaders().set('Content-Type', 'application/json')
-    })
-    .subscribe(() => {
-      this.classes.sort((a, b) => {
-        if (a < b) return -1;
-        if (a > b) return 1;
-        return 0;
-      });
-      this.classListChangedEvent.next(this.classes.slice());
-    });
-  }
-
-  addClass(newClass: Class) {
-    if (newClass == null || newClass === undefined) return;
-    this.maxClassId++;
-    newClass.id = `${this.maxClassId}`;
-    this.classes.push(newClass);
-    this.storeClasses();
-  }
-
-  getMaxId(): number {
-    let maxId = 0;
+getMaxId(): number {
+  let maxId = 0;
     this.classes.forEach((d) => {
       if (+d.id > maxId) maxId = +d.id;
     });
     return maxId;
-  }
+}
 
-  updateClass(original: Class, newClass: Class) {
-    if (
-      newClass === null ||
-      newClass === undefined ||
-      original === null ||
-      original === undefined
-    ) {
-      return;
-    }
-    const pos = this.classes.indexOf(original);
+addClass(newClass: Class) {
+  if (newClass === null || newClass === undefined) return;
+  this.maxClassId++;
+  newClass.id = `${this.maxClassId}`;
+  this.classes.push(newClass);
+  this.classListChangedEvent.next(this.classes.slice());
+}
+
+updateClass(original: Class, newClass: Class) {
+  if(
+    newClass == null ||
+    newClass == undefined ||
+    original == null ||
+    original == undefined
+  ){
+    return;
+  }
+  const pos = this.classes.indexOf(original);
     if (pos < 0) return;
 
     newClass.id = original.id;
     this.classes[pos] = newClass;
-    this.storeClasses();
+    this.classListChangedEvent.next(this.classes.slice());
   }
 
-  deleteClass: any;
+  deleteClass: (arg0: Class) => void
 
 }
-
-
