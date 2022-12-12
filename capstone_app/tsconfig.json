@@ -6,6 +6,7 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "rootDir": "src/",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictNullChecks": false,

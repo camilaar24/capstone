@@ -1,13 +1,13 @@
 {
     "development": {
         "PORT": 3000,
-        "MONGODB_URI": "",
+        "MONGODB_URI": "mongodb+srv://camilaar:camilaar24.@cluster0.a63dcom.mongodb.net/test",
         "JWT_SECRET": "",
         "JWT_EXP": ""
     },
     "production": {
         "PORT": 80,
-        "MONGODB_URI": "",
+        "MONGODB_URI": "mongodb://xxxxx/DB_Name",
         "JWT_SECRET": "",
         "JWT_EXP": ""
     }
