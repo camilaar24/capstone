@@ -12,10 +12,12 @@ export class SignUpComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
+  router: any;
 
   constructor( public userService: UserService) { }
 
   ngOnInit() {
+    this.router.navigateByUrl('/login');
   }
 
   onSubmit(form: NgForm) {
@@ -30,7 +32,7 @@ export class SignUpComponent implements OnInit {
           this.serverErrorMessages = err.error.join('<br/>');
         }
         else
-          this.serverErrorMessages = 'Something went wrong.Please try again.';
+        this.router.navigateByUrl('/login');
       }
     );
   }

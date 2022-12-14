@@ -1,11 +1,11 @@
 .classDiv {
     width: 9rem;
     height: 11rem;
-    margin: 2px;
+    margin: 10px;
     font-size: 2rem;
     border: solid 2px #4CC9F0;
     border-radius: 10px;
     float: left;
-    padding: .20rem;
+    padding: 2px;
     text-align: center; 
   }

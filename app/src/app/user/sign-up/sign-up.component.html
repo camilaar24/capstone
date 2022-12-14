@@ -30,11 +30,13 @@
   </form>
   
   <!-- Success message -->
-  <div class="success" *ngIf="showSucessMessage">
-    Saved successfully
+  <div class="success" *ngIf="showSucessMessage" type="submit" value="Sign in">
+    Saved successfully 
+    <a routerLink="/signin">Sign-in now! </a>
   </div>
   
   <!-- Error message -->
   <div class="alert" *ngIf="serverErrorMessages">
     {{serverErrorMessages}}
   </div>
+

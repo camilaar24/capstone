@@ -5,9 +5,9 @@ var http = require("http");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var mongoose = require("mongoose");
+
 // ROUTES
-const index = require("./server/routes/app");
+const index = require("./server/app");
 
 var app = express(); // create an instance of express
 
@@ -36,18 +36,6 @@ app.use((req, res, next) => {
   next();
 });
 
-//#region "MONGO"
-// establish a connection to the mongo database
-mongoose.connect(
-    process.env.MONGO_URL,
-    {
-      useNewUrlParser: true,
-    },
-    (err, res) => {
-      if (err) console.error("CONNECTION FAILED: " + err);
-      else console.log("Connected to database!");
-    }
-  );
   
   //#endregion "MONGO"
   
